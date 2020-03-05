@@ -29,7 +29,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.Spinner
-import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueNavigator
 import kotlinx.android.synthetic.main.activity_video.*
@@ -63,7 +62,6 @@ class VideoActivity : AppCompatActivity(), AnkoLogger {
             override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
                 java.lang.Float.valueOf(speeds[position])
                 baseContext.toast(position.toString())
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
