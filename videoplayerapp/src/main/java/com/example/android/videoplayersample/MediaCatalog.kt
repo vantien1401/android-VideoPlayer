@@ -35,7 +35,7 @@ open class MediaCatalog(private val list: MutableList<MediaDescriptionCompat>) :
                     setDescription("MP4 loaded over HTTP")
                     setMediaId("1")
                     // License - https://peach.blender.org/download/
-                    setMediaUri(Uri.parse("http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"))
+                    setMediaUri(Uri.parse("https://archive.org/download/ElephantsDream/ed_hd.mp4"))
                     setTitle("Short film Big Buck Bunny")
                     setSubtitle("Streaming video")
                     build()

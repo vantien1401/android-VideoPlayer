@@ -24,9 +24,11 @@ import android.os.Build
 import android.support.annotation.RequiresApi
 import android.support.v4.media.AudioAttributesCompat
 import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.PlaybackParameters
 import com.google.android.exoplayer2.SimpleExoPlayer
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.warn
+
 
 /**
  * Wrapper around a [SimpleExoPlayer] simplifies playback by automatically handling
@@ -37,6 +39,7 @@ class AudioFocusWrapper(private val audioAttributes: AudioAttributesCompat,
                         private val audioManager: AudioManager,
                         private val player: SimpleExoPlayer) : ExoPlayer by player, AnkoLogger {
     private var shouldPlayWhenReady = false
+    var param = PlaybackParameters(1f, 1f)
 
     private val audioFocusListener = AudioManager.OnAudioFocusChangeListener { focusChange ->
         when (focusChange) {
@@ -44,6 +47,7 @@ class AudioFocusWrapper(private val audioAttributes: AudioAttributesCompat,
                 if (shouldPlayWhenReady || player.playWhenReady) {
                     player.playWhenReady = true
                     player.volume = MEDIA_VOLUME_DEFAULT
+                    player.setPlaybackParameters(param)
                 }
                 shouldPlayWhenReady = false
             }
