@@ -56,10 +56,7 @@ class VideoActivity : AppCompatActivity(), AnkoLogger {
     private lateinit var playerHolder: PlayerHolder
     private var spinnerSpeeds: Spinner? = null
     // Exo player
-    var playerExo: SimpleExoPlayer? = ExoPlayerFactory.newSimpleInstance(this,
-            DefaultRenderersFactory(this),
-            DefaultTrackSelector()
-    )
+
 
     // Android lifecycle hooks.
     override fun onCreate(savedInstanceState: Bundle?) {
