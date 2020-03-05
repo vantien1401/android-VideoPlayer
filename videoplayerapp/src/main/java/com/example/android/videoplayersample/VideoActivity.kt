@@ -29,16 +29,11 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.Spinner
-import com.google.android.exoplayer2.DefaultRenderersFactory
-import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.PlaybackParameters
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueNavigator
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import kotlinx.android.synthetic.main.activity_video.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.audioManager
 import org.jetbrains.anko.toast
 
 /**
@@ -55,8 +50,6 @@ class VideoActivity : AppCompatActivity(), AnkoLogger {
     private val playerState by lazy { PlayerState() }
     private lateinit var playerHolder: PlayerHolder
     private var spinnerSpeeds: Spinner? = null
-    // Exo player
-
 
     // Android lifecycle hooks.
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,14 +58,12 @@ class VideoActivity : AppCompatActivity(), AnkoLogger {
         spinnerSpeeds = findViewById<View>(R.id.spinner_speeds) as Spinner
         // While the user is in the app, the volume controls should adjust the music volume.
         volumeControlStream = AudioManager.STREAM_MUSIC
-
-
         val speeds = resources.getStringArray(R.array.speed_values)
         spinnerSpeeds!!.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
                 java.lang.Float.valueOf(speeds[position])
-                var param = PlaybackParameters(java.lang.Float.valueOf(speeds[position]), 1f)
                 baseContext.toast(position.toString())
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -135,7 +126,6 @@ class VideoActivity : AppCompatActivity(), AnkoLogger {
     // ExoPlayer related functions.
     private fun createPlayer() {
         playerHolder = PlayerHolder(this, playerState, exoplayerview_activity_video)
-
     }
 
     private fun startPlayer() {

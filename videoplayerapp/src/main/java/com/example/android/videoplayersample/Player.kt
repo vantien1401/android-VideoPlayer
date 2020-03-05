@@ -57,7 +57,7 @@ class PlayerHolder(private val context: Context,
         audioFocusPlayer = AudioFocusWrapper(
                 audioAttributes,
                 audioManager,
-                ExoPlayerFactory.newSimpleInstance(context, DefaultTrackSelector()).also{ playerView.player = it }
+                ExoPlayerFactory.newSimpleInstance(context, DefaultTrackSelector()).also { playerView.player = it }
         )
         info { "SimpleExoPlayer created" }
     }
